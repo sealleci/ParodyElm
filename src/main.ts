@@ -1,8 +1,9 @@
-import {createApp} from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios';
+import 'vant/es/toast/style'
 import {
   Button,
   Row,

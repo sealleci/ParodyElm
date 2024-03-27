@@ -1,68 +1,32 @@
 <template>
   <van-row class="home-page">
-    <van-row
-      class="home-header"
-      type="flex"
-      justify="space-between"
-      align="bottom"
-    >
+    <van-row class="home-header" type="flex" justify="space-between" align="bottom">
       <van-col span="16">
         <van-row type="flex" gutter="3" justify="start" align="center">
           <van-col span="4">
-            <van-image
-              :src="positionIcon"
-              height="1.75rem"
-              width="1.75rem"
-            ></van-image>
+            <van-image :src="positionIcon" height="1.75rem" width="1.75rem"></van-image>
           </van-col>
           <van-col class="home-my-address">
-            东软软件园企业服务中心楼
+            软件园服务中心
           </van-col>
           <van-col span="2" class="pointer">
-            <van-image
-              :src="addressDropIcon"
-              height="0.75rem"
-              width="0.75rem"
-            ></van-image>
+            <van-image :src="addressDropIcon" height="0.75rem" width="0.75rem"></van-image>
           </van-col>
         </van-row>
       </van-col>
       <van-col span="4" class="pointer" @click="toCart">
-        <van-image
-          :src="shopCartIcon"
-          height="2rem"
-          width="2rem"
-        ></van-image>
+        <van-image :src="shopCartIcon" height="2rem" width="2rem"></van-image>
       </van-col>
       <van-col span="4" class="pointer">
-        <van-image
-          :src="chatIcon"
-          height="2rem"
-          width="2rem"
-        ></van-image>
+        <van-image :src="chatIcon" height="2rem" width="2rem"></van-image>
       </van-col>
     </van-row>
     <van-row class="home-body" type="flex" justify="center" align="top">
       <van-col span="24">
-        <van-row
-          class="home-search-row"
-          type="flex"
-          justify="center"
-          align="bottom"
-        >
-          <van-row
-            class="home-search"
-            type="flex"
-            justify="space-between"
-            align="center"
-          >
+        <van-row class="home-search-row" type="flex" justify="center" align="bottom">
+          <van-row class="home-search" type="flex" justify="space-between" align="center">
             <van-col span="3">
-              <van-image
-                :src="qrScanIcon"
-                height="1rem"
-                width="1rem"
-                alt="qrcode"
-              />
+              <van-image :src="qrScanIcon" height="1rem" width="1rem" alt="qrcode" />
             </van-col>
             <van-col span="15">
               特价赛百味不吃白不吃快来吃吃与吃吃
@@ -72,98 +36,45 @@
             </van-col>
           </van-row>
         </van-row>
-        <van-row
-          class="search-rec"
-          type="flex"
-          justify="start"
-          align="center"
-        >
+        <van-row class="search-rec" type="flex" justify="start" align="center">
           <van-col class="search-rec-cell">好吃吃</van-col>
           <van-col class="search-rec-cell">小老鼠</van-col>
           <van-col class="search-rec-cell">油炸鸡米花</van-col>
         </van-row>
-        <van-tabs
-          class="home-func"
-          v-model="activeHomeFuncPage"
-          swipeable
-          animated
-          :color="elmColor"
-          type="card"
-          swipe-threshold="2"
-          @change="clickHomeFuncTab"
-        >
+        <van-tabs class="home-func" v-model="activeHomeFuncPage" swipeable animated :color="elmColor" type="card"
+          swipe-threshold="2" @change="clickHomeFuncTab">
           <van-tab name="1">
-            <van-row
-              class="pointer"
-              type="flex"
-              justify="space-around"
-              align="center"
-              v-for="(row, i) in homeFuncs[0]"
-              :key="i"
-            >
-              <van-col
-                span="4"
-                class="home-func-icon"
-                v-for="(col, j) in row"
-                :key="j"
-              >
-                <van-image :src="col.icon"
-                           :height="i===0?40:25"
-                            :width="i===0?40:25"/>
+            <van-row class="pointer" type="flex" justify="space-around" align="center" v-for="(row, i) in homeFuncs[0]"
+              :key="i">
+              <van-col span="4" class="home-func-icon" v-for="(col, j) in row" :key="j">
+                <van-image :src="col.icon" :height="i === 0 ? 40 : 25" :width="i === 0 ? 40 : 25" />
                 <div>{{ col.title }}</div>
               </van-col>
             </van-row>
           </van-tab>
           <van-tab name="2">
-            <van-row
-              class="pointer"
-              type="flex"
-              justify="space-around"
-              align="center"
-              v-for="(row, i) in homeFuncs[1]"
-              :key="i"
-            >
-              <van-col
-                span="4"
-                class="home-func-icon"
-                v-for="(col, j) in row"
-                :key="j"
-              >
-                <van-image :src="col.icon"/>
+            <van-row class="pointer" type="flex" justify="space-around" align="center" v-for="(row, i) in homeFuncs[1]"
+              :key="i">
+              <van-col span="4" class="home-func-icon" v-for="(col, j) in row" :key="j">
+                <van-image :src="col.icon" />
                 <div>{{ col.title }}</div>
               </van-col>
             </van-row>
           </van-tab>
         </van-tabs>
-        <van-row
-          class="discount-row"
-          type="flex"
-          justify="space-around"
-          align="center"
-        >
+        <van-row class="discount-row" type="flex" justify="space-around" align="center">
           <van-col span="4">
-            <van-tag size="medium" :color="orangeColor"
-            >赚豆
-            </van-tag
-            >
+            <van-tag size="medium" :color="orangeColor">赚豆
+            </van-tag>
           </van-col>
-          <van-col span="15"
-          >领吃货卡送<span>20</span>吃货豆，可兑换艾的大礼包
-          </van-col
-          >
+          <van-col span="15">领吃货卡送<span>20</span>吃货豆，可兑换艾的大礼包
+          </van-col>
           <van-col class="pointer" span="5">
-            <van-tag size="medium" round plain :color="orangeColor"
-            >查看
-            </van-tag
-            >
+            <van-tag size="medium" round plain :color="orangeColor">查看
+            </van-tag>
           </van-col>
         </van-row>
-        <van-row
-          class="red-packet"
-          type="flex"
-          justify="center"
-          :style="`background: url(${redPacketImage})`"
-        >
+        <van-row class="red-packet" type="flex" justify="center" :style="`background: url(${redPacketImage})`">
           <van-col span="24">
             <van-row class="red-packet-header">
               <van-col span="24">
@@ -176,51 +87,37 @@
                   剩余
                   <span>
                     <van-row type="flex" align="center">
-                      <van-tag
-                        :color="lightRed"
-                        text-color="red"
-                      >
+                      <van-tag :color="lightRed" text-color="red">
                         {{
-                          getRedPacketRemainTime.slice(
-                            0,
-                            2
-                          )
-                        }}
+              getRedPacketRemainTime.slice(
+                0,
+                2
+              )
+            }}
                       </van-tag>
                       :
-                      <van-tag
-                        :color="lightRed"
-                        text-color="red"
-                      >
+                      <van-tag :color="lightRed" text-color="red">
                         {{
-                          getRedPacketRemainTime.slice(
-                            2,
-                            4
-                          )
-                        }}
+              getRedPacketRemainTime.slice(
+                2,
+                4
+              )
+            }}
                       </van-tag>
                       :
-                      <van-tag
-                        :color="lightRed"
-                        text-color="red"
-                      >
+                      <van-tag :color="lightRed" text-color="red">
                         {{
-                          getRedPacketRemainTime.slice(
-                            4,
-                            6
-                          )
-                        }}
+              getRedPacketRemainTime.slice(
+                4,
+                6
+              )
+            }}
                       </van-tag>
                     </van-row>
                   </span>
                   结束
                   <span>
-                    <van-image
-                      :src="redPacketInfoIcon"
-                      height="14"
-                      width="14"
-                      alt="info"
-                    />
+                    <van-image :src="redPacketInfoIcon" height="14" width="14" alt="info" />
                   </span>
                 </van-row>
               </van-col>
@@ -229,44 +126,20 @@
               <span> 新人特价菜 | 下单后再返红包 </span>
               <span class="pointer">
                 更多
-                <van-image
-                  :src="saleTitleRightIcon"
-                  height="10"
-                  width="8"
-                  alt="right"
-                />
+                <van-image :src="saleTitleRightIcon" height="10" width="8" alt="right" />
               </span>
             </van-row>
             <van-row class="red-mask"></van-row>
             <van-row class="sale-list" type="flex" align="center">
-              <van-skeleton
-                round
-                :row="2"
-                row-width="100%"
-                avatar-size="100"
-                avatar
-                avatar-shape="square"
-                :loading="loading"
-                v-for="(food, i) in redPacketSale"
-                :key="i"
-              >
-                <van-card
-                  :thumb="defaultFoodImage"
-                  :title="food.name"
-                  :desc="food.shop"
-                  currency="补贴后 ¥ "
-                  :price="food.price"
-                  centered
-                />
+              <van-skeleton round :row="2" row-width="100%" avatar-size="100" avatar avatar-shape="square"
+                :loading="loading" v-for="(food, i) in redPacketSale" :key="i">
+                <van-card :thumb="defaultFoodImage" :title="food.name" :desc="food.shop" currency="补贴后 ¥ "
+                  :price="food.price" centered />
               </van-skeleton>
               <van-col class="sale-list-see-more">
                 <van-row type="flex" align="center">
                   <van-tag round class="pointer">
-                    <van-image
-                      :src="rightArrowIcon"
-                      height="16"
-                      alt="left"
-                    />
+                    <van-image :src="rightArrowIcon" height="16" alt="left" />
                   </van-tag>
                   <span>查看更多</span>
                 </van-row>
@@ -275,12 +148,7 @@
           </van-col>
         </van-row>
         <div class="home-select-bar">
-          <van-tabs
-            v-model="activeHomeSubPage"
-            animated
-            :color="elmColor"
-            @change="clickHomeSelectBar"
-          >
+          <van-tabs v-model="activeHomeSubPage" animated :color="elmColor" @change="clickHomeSelectBar">
             <van-tab title="附近推荐" name="nearby">
             </van-tab>
             <van-tab title="发现好菜" name="dish"></van-tab>
@@ -307,20 +175,20 @@
 <script>
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
       loading: true,
-      localName: '温州',
-      defaultFoodImage: require('../../src/assets/images/cart_recommend_default_food_big.png'),
-      positionIcon: require('../../src/assets/images/sp_home_location_icon_big.png'),
-      addressDropIcon: require('../../src/assets/images/sp_home_address_drop_down.png'),
-      shopCartIcon: require('../../src/assets/images/channel_shopping_cart.png'),
-      chatIcon: require('../../src/assets/images/spd2_im.png'),
-      qrScanIcon: require('../../src/assets/images/sc_icon_scan_qr_code.png'),
-      redPacketImage: require('../../src/assets/images/sp_red_packet_update_icon_right.png'),
-      redPacketInfoIcon: require('../../src/assets/images/od_modify_info_hint_icon.png'),
-      saleTitleRightIcon: require('../../src/assets/images/od_detail_right_indicator.png'),
-      rightArrowIcon: require('../../src/assets/images/bk_checkout_icon_back_action.png'),
+      localName: '大阪',
+      defaultFoodImage: new URL('../../src/assets/images/cart_recommend_default_food_big.png', import.meta.url).href,
+      positionIcon: new URL('../../src/assets/images/sp_home_location_icon_big.png', import.meta.url).href,
+      addressDropIcon: new URL('../../src/assets/images/sp_home_address_drop_down.png', import.meta.url).href,
+      shopCartIcon: new URL('../../src/assets/images/channel_shopping_cart.png', import.meta.url).href,
+      chatIcon: new URL('../../src/assets/images/spd2_im.png', import.meta.url).href,
+      qrScanIcon: new URL('../../src/assets/images/sc_icon_scan_qr_code.png', import.meta.url).href,
+      redPacketImage: new URL('../../src/assets/images/sp_red_packet_update_icon_right.png', import.meta.url).href,
+      redPacketInfoIcon: new URL('../../src/assets/images/od_modify_info_hint_icon.png', import.meta.url).href,
+      saleTitleRightIcon: new URL('../../src/assets/images/od_detail_right_indicator.png', import.meta.url).href,
+      rightArrowIcon: new URL('../../src/assets/images/bk_checkout_icon_back_action.png', import.meta.url).href,
       activeHomeFuncPage: 1,
       activeHomeSubPage: 1,
       elmColor: '#02B6FD',
@@ -337,67 +205,67 @@ export default {
         [
           [
             {
-              icon: require('../../src/assets/images/app/a60732e5fbeacbbea6469cc22d4f2png.png'),
+              icon: new URL('../../src/assets/images/app/a60732e5fbeacbbea6469cc22d4f2png.png', import.meta.url).href,
               title: '美食外卖'
             },
             {
-              icon: require('../../src/assets/images/app/83c3d3b05c86417f198269e0bb420png.png'),
+              icon: new URL('../../src/assets/images/app/83c3d3b05c86417f198269e0bb420png.png', import.meta.url).href,
               title: '超市便利'
             },
             {
-              icon: require('../../src/assets/images/app/9c50ea3d57cb62e85c321f8b85927png.png'),
+              icon: new URL('../../src/assets/images/app/9c50ea3d57cb62e85c321f8b85927png.png', import.meta.url).href,
               title: '美食团购'
             },
             {
-              icon: require('../../src/assets/images/app/f61874fcf36f7b7d601d04aadcd75png.png'),
+              icon: new URL('../../src/assets/images/app/f61874fcf36f7b7d601d04aadcd75png.png', import.meta.url).href,
               title: '丽人/医美'
             },
             {
-              icon: require('../../src/assets/images/app/212b3d9933207797e02e89798e50cjpeg.jpeg.png'),
+              icon: new URL('../../src/assets/images/app/212b3d9933207797e02e89798e50cjpeg.jpeg.png', import.meta.url).href,
               title: '休闲玩乐'
             }
           ],
           [
             {
-              icon: require('../../src/assets/images/app/5f948143e93b6153f5fad3448af82png.png'),
+              icon: new URL('../../src/assets/images/app/5f948143e93b6153f5fad3448af82png.png', import.meta.url).href,
               title: '下午茶'
             },
             {
-              icon: require('../../src/assets/images/app/1af0dcbe044dd905c367ff9d61a6cpng.png'),
+              icon: new URL('../../src/assets/images/app/1af0dcbe044dd905c367ff9d61a6cpng.png', import.meta.url).href,
               title: '水果'
             },
             {
-              icon: require('../../src/assets/images/app/288ef9ad692bc657deeefab744b9bpng.png'),
+              icon: new URL('../../src/assets/images/app/288ef9ad692bc657deeefab744b9bpng.png', import.meta.url).href,
               title: '甜品饮料'
             },
             {
-              icon: require('../../src/assets/images/app/a6dea2ebc750190bb810977f26c94png.png'),
+              icon: new URL('../../src/assets/images/app/a6dea2ebc750190bb810977f26c94png.png', import.meta.url).href,
               title: '买菜'
             },
             {
-              icon: require('../../src/assets/images/app/a95ad27e0c94e97f10111decd1fbepng.png'),
+              icon: new URL('../../src/assets/images/app/a95ad27e0c94e97f10111decd1fbepng.png', import.meta.url).href,
               title: '送药上门'
             }
           ],
           [
             {
-              icon: require('../../src/assets/images/app/a95ad27e0c94e97f10111decd1fbepng.png'),
+              icon: new URL('../../src/assets/images/app/a95ad27e0c94e97f10111decd1fbepng.png', import.meta.url).href,
               title: '跑腿代购'
             },
             {
-              icon: require('../../src/assets/images/app/288ef9ad692bc657deeefab744b9bpng.png'),
+              icon: new URL('../../src/assets/images/app/288ef9ad692bc657deeefab744b9bpng.png', import.meta.url).href,
               title: '鲜花绿植'
             },
             {
-              icon: require('../../src/assets/images/app/1af0dcbe044dd905c367ff9d61a6cpng.png'),
+              icon: new URL('../../src/assets/images/app/1af0dcbe044dd905c367ff9d61a6cpng.png', import.meta.url).href,
               title: '0元领水果'
             },
             {
-              icon: require('../../src/assets/images/app/5f948143e93b6153f5fad3448af82png.png'),
+              icon: new URL('../../src/assets/images/app/5f948143e93b6153f5fad3448af82png.png', import.meta.url).href,
               title: '红包膨胀'
             },
             {
-              icon: require('../../src/assets/images/app/a6dea2ebc750190bb810977f26c94png.png'),
+              icon: new URL('../../src/assets/images/app/a6dea2ebc750190bb810977f26c94png.png', import.meta.url).href,
               title: '冲吧饿小宝'
             }
           ]
@@ -405,89 +273,89 @@ export default {
         [
           [
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '省钱好券'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '现金提款机'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '洗衣家政'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '天天赚现金'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '酒店'
             }
           ],
           [
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '洗浴汗蒸'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '酒水饮料'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '足疗按摩'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '医疗口腔'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '景点门票'
             }
           ],
           [
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '充电包'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '全城购'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '大牌价到'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '借钱'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '信用卡'
             }
           ],
           [
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '电影票'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '快速自取'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '火车机票'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '周边游'
             },
             {
-              icon: require('../../src/assets/images/colored_logo.png'),
+              icon: new URL('../../src/assets/images/colored_logo.png', import.meta.url).href,
               title: '全部'
             }
           ]
@@ -538,26 +406,26 @@ export default {
     }
   },
   methods: {
-    toCart () {
+    toCart() {
       this.$router.push('/cart')
       document.querySelector('#elm-nav').style.display = 'none'
       document.querySelector('#elm-page-body').style.height = '100vh'
     },
-    getBetweenColor (a, b, ratio) {
+    getBetweenColor(a, b, ratio) {
       const rs = [parseInt(a.slice(1, 3), 16),
-        parseInt(b.slice(1, 3), 16)]
+      parseInt(b.slice(1, 3), 16)]
       const gs = [parseInt(a.slice(3, 5), 16),
-        parseInt(b.slice(3, 5), 16)]
+      parseInt(b.slice(3, 5), 16)]
       const bs = [parseInt(a.slice(5, 7), 16),
-        parseInt(b.slice(5, 7), 16)]
+      parseInt(b.slice(5, 7), 16)]
 
-      function calcColor (arr) {
+      function calcColor(arr) {
         return Math.floor((arr[1] - arr[0]) * ratio + arr[0]).toString(16)
       }
 
       return `#${calcColor(rs)}${calcColor(gs)}${calcColor(bs)}`
     },
-    handleHomeFuncScroll () {
+    handleHomeFuncScroll() {
       const tabRow = document.querySelector('.home-func .van-tabs__wrap')
       const tab1 = document.querySelector('.home-func .van-tab:nth-child(1)')
       const tab2 = document.querySelector('.home-func .van-tab:nth-child(2)')
@@ -593,7 +461,7 @@ export default {
         tabRow.style.marginTop = '0px'
       }
     },
-    clickHomeFuncTab (name) {
+    clickHomeFuncTab(name) {
       const tab1 = document.querySelector('.home-func .van-tab:nth-child(1)')
       const tab2 = document.querySelector('.home-func .van-tab:nth-child(2)')
       switch (name) {
@@ -613,7 +481,7 @@ export default {
           break
       }
     },
-    clickHomeSelectBar (name) {
+    clickHomeSelectBar(name) {
       if (name === 'nearby') {
         this.$router.push(`/home/${name}`)
       } else {
@@ -621,12 +489,12 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     setInterval(() => {
       this.remainTime = Math.max(0, this.remainTime - 1)
     }, 1000)
   },
-  mounted () {
+  mounted() {
     this.loading = false
     this.homeFuncTrackObserver.observe(document.querySelector('.home-func .van-swipe__track'), {
       childList: false,
@@ -636,7 +504,7 @@ export default {
 
   },
   computed: {
-    getRedPacketRemainTime () {
+    getRedPacketRemainTime() {
       const h = [
         Math.floor(this.remainTime / 60 / 60).toString().padStart(2, '0'),
         Math.floor((this.remainTime % (60 * 60)) / 60).toString().padStart(2, '0'),
@@ -645,7 +513,7 @@ export default {
       return h.join('')
     }
   },
-  activated () {
+  activated() {
     const pageBody = document.querySelector('#elm-page-body')
     pageBody.scrollTop = this.$store.state.homePageScrollTop
     document.querySelector('#elm-nav').style.display = 'flex'
@@ -681,12 +549,12 @@ export default {
 }
 
 .home-select-bar {
-  z-index: 100;
+  z-: 100;
   position: sticky;
   top: 7vh;
   width: 100vw;
 
-  /deep/ .van-tabs {
+  :deep(.van-tabs) {
     background-color: transparent;
     height: 5vh;
 
@@ -713,7 +581,7 @@ export default {
 }
 
 .sale-list {
-  /deep/ .van-skeleton {
+  :deep(.van-skeleton) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -724,7 +592,7 @@ export default {
     }
   }
 
-  /deep/ .van-card {
+  :deep(.van-card) {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -853,8 +721,8 @@ export default {
     width: 298px;
     height: 160px;
     background: linear-gradient(to bottom,
-    @red-bottom-color,
-    @home-bg-bottom-color);
+        @red-bottom-color,
+        @home-bg-bottom-color);
   }
 
   .sale-title {
@@ -882,7 +750,7 @@ export default {
       height: 100%;
       justify-content: space-around;
 
-      & > .van-row:nth-child(1) {
+      &>.van-row:nth-child(1) {
         color: @red-color;
         font-size: 14px;
 
@@ -894,8 +762,8 @@ export default {
           width: 40px;
           height: 4px;
           background: linear-gradient(to left,
-          @red-color,
-          transparent);
+              @red-color,
+              transparent);
           clip-path: polygon(0 50%, 100% 0, 100% 100%);
         }
 
@@ -907,13 +775,13 @@ export default {
           width: 40px;
           height: 4px;
           background: linear-gradient(to right,
-          @red-color,
-          transparent);
+              @red-color,
+              transparent);
           clip-path: polygon(0 0%, 100% 50%, 0% 100%);
         }
       }
 
-      & > .van-row:nth-child(2) {
+      &>.van-row:nth-child(2) {
         color: @red-color;
         font-size: 30px;
         font-weight: bold;
@@ -928,7 +796,7 @@ export default {
         }
       }
 
-      & > .van-row:nth-child(3) {
+      &>.van-row:nth-child(3) {
         font-size: 14px;
         color: @red-packet-font-color;
 
@@ -965,7 +833,7 @@ export default {
   border-radius: 2vw;
   background-color: white;
 
-  & > .van-col:nth-child(2) {
+  &>.van-col:nth-child(2) {
     letter-spacing: 2px;
     font-size: 14px;
     white-space: nowrap;
@@ -973,14 +841,14 @@ export default {
     overflow: hidden;
     word-break: break-all;
 
-    & > span {
+    &>span {
       font-weight: bold;
       color: @orange-color;
     }
   }
 
-  & > .van-col:nth-child(3) {
-    /deep/ .van-tag {
+  &>.van-col:nth-child(3) {
+    :deep(.van-tag) {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -993,12 +861,12 @@ export default {
 .home-func-icon {
   margin: 2vh 0 0;
 
-  & > .van-image {
+  &>.van-image {
     height: 1.5rem;
     width: 1.5rem;
   }
 
-  & > div {
+  &>div {
     font-size: 13px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -1011,22 +879,22 @@ export default {
   display: flex;
   flex-direction: column-reverse;
 
-  & /deep/ .van-tabs__content {
+  & :deep(.van-tabs__content) {
     margin-bottom: 2vh;
   }
 
-  & /deep/ .van-tabs__wrap {
+  & :deep(.van-tabs__wrap) {
     display: flex;
     justify-content: center;
     height: 2vh;
 
-    & > .van-tabs__nav--card {
+    &>.van-tabs__nav--card {
       width: 10vw;
       height: 4px;
       border: none;
       background-color: transparent;
 
-      & > .van-tab {
+      &>.van-tab {
         flex-grow: 1;
         width: 5vw;
         margin: 0 2px;
@@ -1035,7 +903,7 @@ export default {
         background-color: @tab-no-active-color;
       }
 
-      & > .van-tab.van-tab--active {
+      &>.van-tab.van-tab--active {
         flex-grow: 9;
       }
     }
@@ -1047,7 +915,7 @@ export default {
   height: 3vh;
   padding: 0 5vw;
 
-  & > .search-rec-cell {
+  &>.search-rec-cell {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1067,19 +935,19 @@ export default {
 .home-page {
   width: 100vw;
   background: linear-gradient(to bottom,
-  white 50%,
-  @home-bg-bottom-color 50%);
+      white 50%,
+      @home-bg-bottom-color 50%);
 }
 
 .home-header {
-  z-index: 0;
+  z-: 0;
   width: 100vw;
   height: 12vh;
   background-color: @elm-color;
   font-weight: bold;
   color: white;
 
-  & > .van-col {
+  &>.van-col {
     position: relative;
     display: flex;
     align-items: center;
@@ -1087,7 +955,7 @@ export default {
     height: 10vh;
     //border: 1px solid red;
 
-    & > .van-row {
+    &>.van-row {
       height: 100%;
       width: 100%;
 
@@ -1120,13 +988,13 @@ export default {
   height: fit-content;
   border-radius: 4vw 4vw 0 0;
   background: linear-gradient(to bottom,
-  white 12vh,
-  @home-bg-bottom-color,
-  @home-bg-bottom-color 60vh);
+      white 12vh,
+      @home-bg-bottom-color,
+      @home-bg-bottom-color 60vh);
 }
 
 .home-search-row {
-  z-index: 100;
+  z-: 100;
   position: sticky;
   top: 0;
   width: 100%;
@@ -1142,11 +1010,11 @@ export default {
   border: 1px solid @elm-color;
   border-radius: 5vh;
 
-  & > .van-col {
+  &>.van-col {
     height: 100%;
   }
 
-  & > .van-col:nth-child(1) {
+  &>.van-col:nth-child(1) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1161,7 +1029,7 @@ export default {
     }
   }
 
-  & > .van-col:nth-child(2) {
+  &>.van-col:nth-child(2) {
     display: inline-block;
     width: 100%;
     line-height: 32px;
@@ -1174,19 +1042,19 @@ export default {
     color: @search-font-color;
   }
 
-  & > .van-col:nth-child(3) {
+  &>.van-col:nth-child(3) {
     display: flex;
     justify-content: right;
 
-    & > .van-button {
+    &>.van-button {
       height: 100%;
       width: 100%;
       font-size: 14px;
       color: white;
       border: none;
       background: linear-gradient(to right,
-      @search-btn-l-color,
-      @search-btn-r-color);
+          @search-btn-l-color,
+          @search-btn-r-color);
     }
   }
 }

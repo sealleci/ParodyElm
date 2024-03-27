@@ -1,6 +1,6 @@
 <template>
   <div className="null-order">
-    <van-image :src="nullImage" height="130" width="180"/>
+    <van-image :src="nullImage" height="130" width="180" />
     <span>近三个月没有退款订单</span>
   </div>
 </template>
@@ -8,9 +8,9 @@
 <script>
 export default {
   name: 'Refund',
-  data () {
+  data() {
     return {
-      nullImage: require('../../src/assets/images/null.png')
+      nullImage: new URL('../../src/assets/images/null.png', import.meta.url).href
     }
   }
 }

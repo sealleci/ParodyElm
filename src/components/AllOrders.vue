@@ -1,10 +1,9 @@
 <template>
-  <div class="null-order"
-       v-if="!isTheCartHaving">
-    <van-image :src="nullImage" height="130" width="180"/>
+  <div class="null-order" v-if="!isTheCartHaving">
+    <van-image :src="nullImage" height="130" width="180" />
     <span>近一年没有下单</span>
     <van-button round type="primary" style="margin-top: 3vh;padding: 0 8vw; height: 5vh;"
-                @click="this.$router.push('/home')">去下单
+      @click="this.$router.push('/home')">去下单
     </van-button>
   </div>
   <div v-else>
@@ -12,13 +11,12 @@
       <van-cell>
         <h4>订单</h4>
       </van-cell>
-      <template v-for="(shop,i) in $store.state.the_order">
+      <template v-for="(shop, i) in $store.state.the_order">
 
-        <van-cell
-          v-if="isThisHas(shop)">
+        <van-cell v-if="isThisHas(shop)">
           <van-row style="width: 100%" type="flex" justify="space-between" align="center">
-            <van-image :src="`/images/shops/${shop.shop.id-1}.png`" height="60"
-                       style="border-radius: 10px;overflow: hidden"/>
+            <van-image :src="`/images/shops/${shop.shop.id - 1}.png`" height="60"
+              style="border-radius: 10px;overflow: hidden" />
             <span>{{ shop.shop.name }}</span>
             <span>¥{{ getSin(shop) }}</span>
           </van-row>
@@ -37,13 +35,13 @@
 <script>
 export default {
   name: 'AllOrders',
-  data () {
+  data() {
     return {
-      nullImage: require('../../src/assets/images/null.png')
+      nullImage: new URL('../../src/assets/images/null.png', import.meta.url).href
     }
   },
-  methods:{
-    isThisHas (shop) {
+  methods: {
+    isThisHas(shop) {
       // console.log(shop)
       for (let i = 0; i < shop.foods.length; ++i) {
         if (shop.foods[i].count > 0) {
@@ -52,23 +50,23 @@ export default {
       }
       return false
     },
-    getSin (shop) {
+    getSin(shop) {
       let res = 0.0
-      let b=false
+      let b = false
       for (let i = 0; i < shop.foods.length; ++i) {
         if (shop.foods[i].count > 0) {
-          b=true
+          b = true
           res += shop.foods[i].count * parseFloat(shop.foods[i].food.pinyin_name)
         }
       }
-      if(b){
-        res+=shop.shop.float_delivery_fee
+      if (b) {
+        res += shop.shop.float_delivery_fee
       }
       return res.toFixed(2)
     }
   },
   computed: {
-    getTotalMoney () {
+    getTotalMoney() {
       if (this.$store.state.the_order.length <= 0) {
         return 0;
       }
@@ -87,7 +85,7 @@ export default {
       }
       return res.toFixed(2)
     },
-    isTheCartHaving () {
+    isTheCartHaving() {
       if (this.$store.state.the_order.length <= 0) {
         return false
       } else {

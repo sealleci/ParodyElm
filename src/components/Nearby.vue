@@ -1,69 +1,34 @@
 <template>
-  <div
-    v-if="!ready">
-    <van-loading color="#0094ff" vertical
-                 style="margin:2vh 0;">
+  <div v-if="!ready">
+    <van-loading color="#0094ff" vertical style="margin:2vh 0;">
       加载中……
     </van-loading>
   </div>
   <template v-else>
-    <div
-      class="nearby-header">
-      <van-dropdown-menu
-        class="nearby-filter"
-        z-index="5000"
-        active-color="black"
-      >
-        <van-dropdown-item
-          v-for="(title, i) in filterTitles"
-          :key="i"
-          :title="title"
-          :v-model="filterVars[i]"
-          :options="filterOptions[i]"
-        />
+    <div class="nearby-header">
+      <van-dropdown-menu class="nearby-filter" z-index="5000" active-color="black">
+        <van-dropdown-item v-for="(title, i) in filterTitles" :key="i" :title="title" :v-model="filterVars[i]"
+          :options="filterOptions[i]" />
       </van-dropdown-menu>
-      <van-row
-        class="check-box-row"
-        type="flex"
-        justify="space-around"
-        align="center"
-      >
-        <van-tag
-          v-for="(title, i) in checkBoxTitles"
-          :key="i"
-          v-model="checkBoxes[i]"
-          color="white"
-          text-color="black"
-          @mouseup="toggleCheckBox(i)"
-        >
+      <van-row class="check-box-row" type="flex" justify="space-around" align="center">
+        <van-tag v-for="(title, i) in checkBoxTitles" :key="i" v-model="checkBoxes[i]" color="white" text-color="black"
+          @mouseup="toggleCheckBox(i)">
           {{ title }}
         </van-tag>
       </van-row>
     </div>
     <van-row class="red-packet-prompt" type="flex" justify="center">
       <van-tag :text-color="redColor" :color="lightRedColor">
-        <van-image :src="redPacketIcon" height="16" width="16" alt="red"/>
+        <van-image :src="redPacketIcon" height="16" width="16" alt="red" />
         你的14元补贴已到账，全场可用
       </van-tag>
     </van-row>
     <van-row class="food-list">
       <van-col span="24">
-        <van-row
-          class="food-card"
-          v-for="(food, i) in dbShops"
-          :key="i"
-          type="flex"
-          align="center"
-          justify="space-around"
-          @click="toShop(food,i)"
-        >
+        <van-row class="food-card" v-for="(food, i) in dbShops" :key="i" type="flex" align="center"
+          justify="space-around" @click="toShop(food, i)">
           <van-col>
-            <van-image
-              :src="`/images/shops/${i}.png`"
-              alt="food"
-              height="110"
-              width="110"
-            />
+            <van-image :src="`/images/shops/${i}.png`" alt="food" height="110" width="110" />
           </van-col>
           <van-col span="13">
             <van-row type="flex" justify="space-between" align="center">
@@ -72,17 +37,17 @@
             </van-row>
             <van-row type="flex" justify="space-between" align="center">
               <van-col span="18">
-              <span>
-                {{ food.rating + "分" }}
-              </span>
                 <span>
-                {{ "月售" + food.recent_order_num }}
-              </span>
+                  {{ food.rating + "分" }}
+                </span>
+                <span>
+                  {{ "月售" + food.recent_order_num }}
+                </span>
               </van-col>
               <van-col>
-              <span>
-                {{ 30 + "分钟" }}
-              </span>
+                <span>
+                  {{ 30 + "分钟" }}
+                </span>
               </van-col>
             </van-row>
             <van-row span="6">
@@ -107,14 +72,14 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Nearby',
-  data () {
+  data() {
     return {
-      redPacketIcon: require('../../src/assets/images/mist_sp_home_supermarket_red_packet.png'),
-      defaultFoodImage: require('../../src/assets/images/cart_recommend_default_food_big.png'),
+      redPacketIcon: new URL('../../src/assets/images/mist_sp_home_supermarket_red_packet.png', import.meta.url).href,
+      defaultFoodImage: new URL('../../src/assets/images/cart_recommend_default_food_big.png', import.meta.url).href,
       redColor: '#F43C28',
       lightRedColor: '#FCE6D9',
       foodList: [
@@ -382,24 +347,24 @@ export default {
       ready: false
     }
   },
-  mounted () {
+  mounted() {
     this.initData()
   },
   computed: {
     ...mapState(['the_cart']),
   },
   methods: {
-    initData () {
+    initData() {
       this.$axios.get('/apis/shopping/restaurants').then((resp) => {
         this.dbShops = resp.data
-        this.$store.state.the_cart = resp.data.map(e=>({
-          shop:e,
-          foods:[]
+        this.$store.state.the_cart = resp.data.map(e => ({
+          shop: e,
+          foods: []
         }))
         this.ready = true
-      })
+      }).catch(err => { })
     },
-    toShop (shop, i) {
+    toShop(shop, i) {
       this.$router.push('/shop')
       document.querySelector('#elm-nav').style.display = 'none'
       document.querySelector('#elm-page-body').style.height = '100vh'
@@ -407,7 +372,7 @@ export default {
         shop, i
       }
     },
-    toggleCheckBox (index) {
+    toggleCheckBox(index) {
       this.checkBoxes[index] = this.checkBoxes[index] ^ 1
       const box = document.querySelector(`.check-box-row > span:nth-child(${index + 1})`)
       if (this.checkBoxes[index] === 1) {
@@ -451,63 +416,63 @@ export default {
   margin-bottom: 1vh;
   .pointer();
 
-  & > .van-col:nth-child(1) {
+  &>.van-col:nth-child(1) {
     height: 110px;
     width: 110px;
     border-radius: 10px;
     overflow: hidden;
   }
 
-  & > .van-col:nth-child(2) {
+  &>.van-col:nth-child(2) {
     display: flex;
     height: 100px;
     flex-direction: column;
     align-content: flex-start;
     justify-content: space-between;
 
-    & > .van-row:nth-child(1) {
+    &>.van-row:nth-child(1) {
       width: 100%;
       font-weight: bold;
 
-      & > span:nth-child(1) {
+      &>span:nth-child(1) {
         display: inline-block;
         .text-overflow();
       }
     }
 
-    & > .van-row:nth-child(2) {
+    &>.van-row:nth-child(2) {
       width: 100%;
       font-size: 14px;
       color: @gray-color;
 
-      & > .van-col:nth-child(1) {
+      &>.van-col:nth-child(1) {
         display: flex;
         align-items: center;
         justify-content: flex-start;
 
-        & > span:nth-child(1) {
+        &>span:nth-child(1) {
           color: @red-color;
           margin-right: 3vw;
         }
       }
     }
 
-    & > .van-row:nth-child(3) {
+    &>.van-row:nth-child(3) {
       width: 100%;
       font-size: 14px;
       color: @gray-color;
     }
 
-    & > .van-row:nth-child(4) {
-      /deep/ .van-tag {
+    &>.van-row:nth-child(4) {
+      :deep(.van-tag) {
         border-radius: 4px;
       }
 
-      & > .van-col {
+      &>.van-col {
         display: flex;
         justify-content: flex-start;
 
-        & > .van-tag:nth-child(1) {
+        &>.van-tag:nth-child(1) {
           margin-right: 5px;
         }
       }
@@ -516,7 +481,7 @@ export default {
 }
 
 .food-list {
-  & > .van-col {
+  &>.van-col {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -528,7 +493,7 @@ export default {
   margin-top: 1vh;
   margin-bottom: 1vh;
 
-  /deep/ .van-tag {
+  :deep(.van-tag) {
     width: 87%;
     font-size: 14px;
     padding: 8px 15px;
@@ -545,7 +510,7 @@ export default {
   height: 6vh;
   padding: 1vh 0;
 
-  /deep/ .van-tag {
+  :deep(.van-tag) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -572,7 +537,7 @@ export default {
   background-color: transparent;
   height: 6vh;
 
-  /deep/ .van-dropdown-menu__bar {
+  :deep(.van-dropdown-menu__bar) {
     background-color: transparent;
     box-shadow: none;
 
@@ -595,7 +560,7 @@ export default {
     }
   }
 
-  /deep/ .van-dropdown-item {
+  :deep(.van-dropdown-item) {
     .van-popup {
       scrollbar-width: none;
 

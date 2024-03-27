@@ -1,10 +1,10 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 import mutations from './mutations'
-import {setStore} from "@/config/mUtils";
+import { setStore } from "../config/mUtils";
 
 export default createStore({
   state: {
-    the_order:[],
+    the_order: [],
     the_cart: [],
     cur_shop: {},
     homePageScrollTop: 0,
@@ -20,10 +20,10 @@ export default createStore({
     login: true,//是否登录
   },
   mutations: {
-    setHomePageScrollTop (state, num) {
+    setHomePageScrollTop(state, num) {
       state.homePageScrollTop = num
     },
-    setShopHeader (state, b) {
+    setShopHeader(state, b) {
       state.shopHeader = b
     },
     // storeUserInfo (state, info) {

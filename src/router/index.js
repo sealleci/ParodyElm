@@ -1,6 +1,6 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Nearby from '../components/Nearby'
+import Nearby from '../components/Nearby.vue'
 
 const routes = [
   {
@@ -25,7 +25,7 @@ const routes = [
       },
       {
         path: '/home/other',
-        component: () => require('../components/Other')
+        component: () => new URL('../components/Other.vue', import.meta.url).href
       }
     ],
     meta: {
@@ -47,16 +47,16 @@ const routes = [
         redirect: '/order/all'
       }, {
         path: '/order/all',
-        component: () => require('../components/AllOrders')
+        component: () => import('../components/AllOrders.vue')
       }, {
         path: '/order/unpaid',
-        component: () => require('../components/Unpaid')
+        component: () => import('../components/Unpaid.vue')
       }, {
         path: '/order/uncomment',
-        component: () => require('../components/Uncomment')
+        component: () => import('../components/Uncomment.vue')
       }, {
         path: '/order/refund',
-        component: () => require('../components/Refund')
+        component: () => import('../components/Refund.vue')
       }
     ]
   },

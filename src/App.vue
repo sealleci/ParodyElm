@@ -7,28 +7,15 @@
     </router-view>
   </van-row>
   <van-row id="elm-nav" type="flex" justify="space-around" align="center">
-    <router-link
-      to="/home"
-      :class="
-        /\/home/.test(this.$route.path)
-          ? 'router-link-exact-active'
-          : ''
-      "
-    >
+    <router-link to="/home" :class="/\/home/.test(this.$route.path)
+      ? 'router-link-exact-active'
+      : ''
+      ">
       <van-col class="home-tab">
         <van-row type="flex" justify="center" align="center">
-          <van-image
-            v-show="!/\/home/.test(this.$route.path)"
-            class="home-tab-icon"
-            :src="homeTabs[0]"
-            alt="home"
-          />
-          <van-image
-            v-show="/\/home/.test(this.$route.path)"
-            class="home-tab-icon-active"
-            :src="homeTabsActive[0]"
-            alt="home"
-          />
+          <van-image v-show="!/\/home/.test(this.$route.path)" class="home-tab-icon" :src="homeTabs[0]" alt="home" />
+          <van-image v-show="/\/home/.test(this.$route.path)" class="home-tab-icon-active" :src="homeTabsActive[0]"
+            alt="home" />
         </van-row>
         <van-row justify="center" align="center"> 首页</van-row>
       </van-col>
@@ -36,43 +23,22 @@
     <router-link to="/found">
       <van-col class="home-tab">
         <van-row type="flex" justify="center" align="center">
-          <van-image
-            v-show="this.$route.path !== '/found'"
-            class="home-tab-icon"
-            :src="homeTabs[1]"
-            alt="found"
-          />
-          <van-image
-            v-show="this.$route.path === '/found'"
-            class="home-tab-icon-active"
-            :src="homeTabsActive[1]"
-            alt="found"
-          />
+          <van-image v-show="this.$route.path !== '/found'" class="home-tab-icon" :src="homeTabs[1]" alt="found" />
+          <van-image v-show="this.$route.path === '/found'" class="home-tab-icon-active" :src="homeTabsActive[1]"
+            alt="found" />
         </van-row>
         <van-row justify="center" align="center"> 真香</van-row>
       </van-col>
     </router-link>
-    <router-link to="/order"
-                 :class="
-        /\/order/.test(this.$route.path)
-          ? 'router-link-exact-active'
-          : ''
-      "
-    >
+    <router-link to="/order" :class="/\/order/.test(this.$route.path)
+      ? 'router-link-exact-active'
+      : ''
+      ">
       <van-col class="home-tab">
         <van-row type="flex" justify="center" align="center">
-          <van-image
-            v-show="!/\/order/.test(this.$route.path)"
-            class="home-tab-icon"
-            :src="homeTabs[2]"
-            alt="order"
-          />
-          <van-image
-            v-show="/\/order/.test(this.$route.path)"
-            class="home-tab-icon-active"
-            :src="homeTabsActive[2]"
-            alt="order"
-          />
+          <van-image v-show="!/\/order/.test(this.$route.path)" class="home-tab-icon" :src="homeTabs[2]" alt="order" />
+          <van-image v-show="/\/order/.test(this.$route.path)" class="home-tab-icon-active" :src="homeTabsActive[2]"
+            alt="order" />
         </van-row>
         <van-row justify="center" align="center"> 订单</van-row>
       </van-col>
@@ -80,18 +46,9 @@
     <router-link to="/profile">
       <van-col class="home-tab">
         <van-row type="flex" justify="center" align="center">
-          <van-image
-            v-show="this.$route.path !== '/profile'"
-            class="home-tab-icon"
-            :src="homeTabs[3]"
-            alt="profile"
-          />
-          <van-image
-            v-show="this.$route.path === '/profile'"
-            class="home-tab-icon-active"
-            :src="homeTabsActive[3]"
-            alt="profile"
-          />
+          <van-image v-show="this.$route.path !== '/profile'" class="home-tab-icon" :src="homeTabs[3]" alt="profile" />
+          <van-image v-show="this.$route.path === '/profile'" class="home-tab-icon-active" :src="homeTabsActive[3]"
+            alt="profile" />
         </van-row>
         <van-row justify="center" align="center"> 我的</van-row>
       </van-col>
@@ -102,34 +59,34 @@
 <script>
 export default {
   name: 'App',
-  data () {
+  data() {
     return {
       preScrollTop: 0,
       scrollDir: 0,
       backColor: '#f5f5f5',
       homeTabs: [
-        require('../src/assets/images/shopping_home_tab_take_out.png'),
-        require('../src/assets/images/shopping_home_tab_found.png'),
-        require('../src/assets/images/shopping_home_tab_order.png'),
-        require('../src/assets/images/shopping_home_tab_personal.png')
+        new URL('../src/assets/images/shopping_home_tab_take_out.png', import.meta.url).href,
+        new URL('../src/assets/images/shopping_home_tab_found.png', import.meta.url).href,
+        new URL('../src/assets/images/shopping_home_tab_order.png', import.meta.url).href,
+        new URL('../src/assets/images/shopping_home_tab_personal.png', import.meta.url).href
       ],
       homeTabsActive: [
-        require('../src/assets/images/shopping_home_tab_take_out_selected.png'),
-        require('../src/assets/images/shopping_home_tab_found_selected.png'),
-        require('../src/assets/images/shopping_home_tab_order_selected.png'),
-        require('../src/assets/images/shopping_home_tab_personal_selected.png')
+        new URL('../src/assets/images/shopping_home_tab_take_out_selected.png', import.meta.url).href,
+        new URL('../src/assets/images/shopping_home_tab_found_selected.png', import.meta.url).href,
+        new URL('../src/assets/images/shopping_home_tab_order_selected.png', import.meta.url).href,
+        new URL('../src/assets/images/shopping_home_tab_personal_selected.png', import.meta.url).href
       ]
     }
   },
   computed: {},
   methods: {
-    convertPXToVH (px) {
+    convertPXToVH(px) {
       return px * (100 / document.documentElement.clientHeight)
     },
-    convertPXToVW (px) {
+    convertPXToVW(px) {
       return px * (100 / document.documentElement.clientWidth)
     },
-    handleScroll () {
+    handleScroll() {
       try {
         if (/\/home/.test(this.$route.path)) {
           const pageBody = document.querySelector('#elm-page-body')
@@ -166,26 +123,24 @@ export default {
                 e.classList.add('sticky-box')
               })
               if (this.preScrollTop > curScrollTop) {
-                nearbyHeader.style.top = `${
-                  Math.min(
-                    Math.abs(
-                      this.preScrollTop - curScrollTop
-                    ) / headerFilter.offsetHeight * 6
-                    , 6
-                  ) + 6
-                }vh`
+                nearbyHeader.style.top = `${Math.min(
+                  Math.abs(
+                    this.preScrollTop - curScrollTop
+                  ) / headerFilter.offsetHeight * 6
+                  , 6
+                ) + 6
+                  }vh`
                 if (this.scrollDir < curScrollTop) {
                   this.preScrollTop = curScrollTop
                 }
               } else {
-                nearbyHeader.style.top = `${
-                  12 - Math.min(
-                    Math.abs(
-                      this.preScrollTop - curScrollTop
-                    ) / headerFilter.offsetHeight * 6
-                    , 6
-                  )
-                }vh`
+                nearbyHeader.style.top = `${12 - Math.min(
+                  Math.abs(
+                    this.preScrollTop - curScrollTop
+                  ) / headerFilter.offsetHeight * 6
+                  , 6
+                )
+                  }vh`
                 if (this.scrollDir > curScrollTop) {
                   this.preScrollTop = curScrollTop
                 }
@@ -224,7 +179,7 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     document
       .querySelector('#elm-page-body')
       .addEventListener('scroll', this.handleScroll)
@@ -237,12 +192,11 @@ export default {
 @bg-color: #f6f6f6;
 @home-bg-bottom-color: #f5f5f5;
 @tab-font-color: #838383;
+
 #app {
   width: 100vw;
   height: 100vh;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
@@ -268,6 +222,7 @@ export default {
   background-color: @bg-color;
   box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
   //border-top: 1px solid red;
   a {
     display: flex;

@@ -1,11 +1,6 @@
 <template>
   <div class="order-select-bar">
-    <van-tabs
-      v-model="activeOrderPage"
-      animated
-      :color="elmColor"
-      @change="clickOrderSelectBar"
-    >
+    <van-tabs v-model="activeOrderPage" animated :color="elmColor" @change="clickOrderSelectBar">
       <van-tab title="全部" name="all">
       </van-tab>
       <van-tab title="待消费" name="unpaid">
@@ -26,18 +21,18 @@
 <script>
 export default {
   name: 'Order',
-  data () {
+  data() {
     return {
       elmColor: '#02B6FD',
       activeOrderPage: 1
     }
   },
   methods: {
-    clickOrderSelectBar (name) {
+    clickOrderSelectBar(name) {
       this.$router.push(`/order/${name}`)
     }
   },
-  activated () {
+  activated() {
     document.querySelector('#elm-nav').style.display = 'flex'
     document.querySelector('#elm-page-body').style.height = '90vh'
   }
@@ -62,7 +57,7 @@ export default {
   top: 7vh;
   width: 100vw;
 
-  /deep/ .van-tabs {
+  :deep(.van-tabs) {
     background-color: transparent;
     height: 5vh;
 
